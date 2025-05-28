@@ -49,3 +49,31 @@ Flutter講座の学習記録
 
 - `AppBar` はアプリケーションバー（画面上部に表示されるバー）を構成するためのウィジェットクラス。
 - 一般的にタイトル、戻るボタン、メニューアイコンなどを含む。
+# Flutter Studio 入門：テキストの表示とスタイル設定
+
+Flutter Studioでは、**ベーシックのTextウィジェット**をスマートフォンの画面にドラッグ＆ドロップすることで、簡単にテキストを表示できます。
+
+## テキストのスタイル指定
+
+Textウィジェットでは、以下のプロパティを使用してフォントの見た目を変更できます。
+
+| プロパティ       | 説明                         | 例                                      |
+|------------------|------------------------------|-----------------------------------------|
+| `fontSize`       | フォントサイズ               | `fontSize: 24.0`                        |
+| `fontWeight`     | フォントの太さ               | `fontWeight: FontWeight.bold`          |
+| `fontFamily`     | フォントファミリー           | `fontFamily: 'Roboto'`                 |
+| `fontStyle`      | フォントスタイル（斜体など） | `fontStyle: FontStyle.italic`          |
+| `color`          | テキストの色                 | `color: Colors.blue`                   |
+
+### 例：スタイル付きテキスト
+```dart
+Text(
+  'こんにちは Flutter!',
+  style: TextStyle(
+    fontSize: 24.0,
+    fontWeight: FontWeight.bold,
+    fontFamily: 'Roboto',
+    fontStyle: FontStyle.italic,
+    color: Colors.blue,
+  ),
+)
