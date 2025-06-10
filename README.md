@@ -77,3 +77,209 @@ Text(
     color: Colors.blue,
   ),
 )
+# Flutterの基本UIウィジェットまとめ（説明＋コード付き）
+
+Flutterでよく使うUIウィジェットを、説明とコード例とセットでわかりやすくまとめました。  
+このまま丸ごとコピー＆ペーストで使えます。
+
+---
+
+## 1. ボタン系ウィジェット
+
+### TextButton（テキストだけのボタン）  
+シンプルに文字だけが表示されるボタン。背景は透明。押すと処理を実行。  
+```dart
+TextButton(
+  onPressed: () {
+    print('TextButtonが押された');
+  },
+  child: Text('TextButton'),
+)
+ElevatedButton（浮き出るボタン）
+立体的で影が付いた背景のあるボタン。押しやすく見える。
+
+dart
+コピーする
+編集する
+ElevatedButton(
+  onPressed: () {
+    print('ElevatedButtonが押された');
+  },
+  child: Text('ElevatedButton'),
+)
+IconButton（アイコンだけのボタン）
+アイコンがボタンになっている。設定画面などによく使う。
+
+dart
+コピーする
+編集する
+IconButton(
+  icon: Icon(Icons.settings),
+  onPressed: () {
+    print('設定ボタンが押された');
+  },
+)
+2. 入力ウィジェット
+TextField（文字入力）
+ユーザーが文字を入力できるテキストボックス。フォームなどに使う。
+
+dart
+コピーする
+編集する
+TextField(
+  decoration: InputDecoration(
+    labelText: '名前を入力',
+  ),
+  onChanged: (text) {
+    print('入力中: $text');
+  },
+)
+3. 選択・切り替えウィジェット
+Checkbox（チェックボックス）
+チェックのON/OFFを切り替える四角いボタン。
+
+dart
+コピーする
+編集する
+bool _checked = false;
+
+Checkbox(
+  value: _checked,
+  onChanged: (bool? value) {
+    setState(() {
+      _checked = value!;
+    });
+  },
+)
+Switch（スイッチ）
+ON/OFFをスライドで切り替えるトグルスイッチ。
+
+dart
+コピーする
+編集する
+bool _switchValue = false;
+
+Switch(
+  value: _switchValue,
+  onChanged: (bool value) {
+    setState(() {
+      _switchValue = value;
+    });
+  },
+)
+Radio（ラジオボタン）
+複数から1つだけ選ぶ丸い選択ボタン。
+
+dart
+コピーする
+編集する
+String _radioValue = 'A';
+
+Radio<String>(
+  value: 'A',
+  groupValue: _radioValue,
+  onChanged: (String? value) {
+    setState(() {
+      _radioValue = value!;
+    });
+  },
+)
+DropdownButton（ドロップダウンメニュー）
+選択肢の中から1つを選ぶプルダウンリスト。
+
+dart
+コピーする
+編集する
+String _dropdownValue = 'One';
+
+DropdownButton<String>(
+  value: _dropdownValue,
+  onChanged: (String? newValue) {
+    setState(() {
+      _dropdownValue = newValue!;
+    });
+  },
+  items: <String>['One', 'Two', 'Three'].map<DropdownMenuItem<String>>((String value) {
+    return DropdownMenuItem<String>(
+      value: value,
+      child: Text(value),
+    );
+  }).toList(),
+)
+4. その他の便利ウィジェット
+Slider（スライダー）
+バーをスライドして値を調整できるウィジェット。
+
+dart
+コピーする
+編集する
+double _sliderValue = 50.0;
+
+Slider(
+  value: _sliderValue,
+  min: 0,
+  max: 100,
+  onChanged: (double value) {
+    setState(() {
+      _sliderValue = value;
+    });
+  },
+)
+FloatingActionButton（丸い浮くアクションボタン）
+画面の右下に浮く丸いボタン。主に追加や新規作成などの操作に使う。
+
+dart
+コピーする
+編集する
+FloatingActionButton(
+  onPressed: () {
+    print('FABが押された');
+  },
+  child: Icon(Icons.add),
+)
+ListView（縦スクロールのリスト表示）
+縦方向にスクロールできるリストを作成。大量のアイテム表示に適している。
+
+dart
+コピーする
+編集する
+ListView.builder(
+  itemCount: 10,
+  itemBuilder: (BuildContext context, int index) {
+    return ListTile(
+      title: Text('アイテム $index'),
+    );
+  },
+)
+Column（縦方向に並べるレイアウト）
+複数のウィジェットを縦に順番に並べる。
+
+dart
+コピーする
+編集する
+Column(
+  children: [
+    Text('上のテキスト'),
+    Text('下のテキスト'),
+  ],
+)
+Row（横方向に並べるレイアウト）
+複数のウィジェットを横に順番に並べる。
+
+dart
+コピーする
+編集する
+Row(
+  children: [
+    Icon(Icons.star),
+    Text('スター'),
+  ],
+)
+5. まとめ一覧表
+用途	ウィジェット名	説明
+ボタン	TextButton, ElevatedButton, IconButton	文字やアイコンの押せるボタン
+文字入力	TextField	ユーザーの文字入力用テキストボックス
+選択肢	Checkbox, Switch, Radio, DropdownButton	ON/OFFや選択肢の切り替え・選択に使う
+その他UI	Slider, FloatingActionButton, ListView, Column, Row	操作やレイアウトを助ける便利なウィジェット
+
+
